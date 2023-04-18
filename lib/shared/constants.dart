@@ -7,6 +7,6 @@ const String kNotesBox = 'notes_box';
 
 String getDate() {
   DateTime dateTime = DateTime.now();
-  String date = DateFormat.yMMMd().format(dateTime);
+  String date = DateFormat.MMMd().format(dateTime);
   return date;
 }
