@@ -1,42 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/widgets/custom_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:notes_app/cubits/add_note_cubit/add_note_states.dart';
 
-import 'custom_text_field.dart';
+import '../cubits/add_note_cubit/add_note_cubit.dart';
+import 'add_new_note_form.dart';
 
 class AddNewNoteBottomSheet extends StatelessWidget {
   const AddNewNoteBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: <Widget>[
-            const SizedBox(
-              height: 24,
-            ),
-            const CustomTextField(hint: 'Title'),
-            const SizedBox(
-              height: 16,
-            ),
-            const CustomTextField(
-              hint: 'Content',
-              maxLines: 5,
-            ),
-            const SizedBox(
-              height: 32,
-            ),
-            CustomButton(
-              height: 8,
-              width: 150,
-              buttonText: "Add",
-              onPressed: () {},
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-          ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: SingleChildScrollView(
+        child: BlocConsumer<AddNoteCubit, AddNoteStates>(
+          listener: (context, state) {
+            if (state is AddNoteSuccessState) {
+              Navigator.pop(context);
+            }
+
+            if (state is AddNoteErrorState) {
+              print("Error happens: ${state.error}");
+            }
+          },
+          builder: (context, state) {
+            return ModalProgressHUD(
+              inAsyncCall: state is AddNoteLoadingState ? true : false,
+              child: const AddNewNoteForm(),
+            );
+          },
         ),
       ),
     );

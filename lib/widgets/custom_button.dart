@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/constants.dart';
+import 'package:notes_app/shared/constants.dart';
 
 class CustomButton extends StatelessWidget {
   final String buttonText;
@@ -34,7 +34,7 @@ class CustomButton extends StatelessWidget {
             vertical: height,
           ),
         ),
-        backgroundColor: MaterialStateProperty.all(primaryColor),
+        backgroundColor: MaterialStateProperty.all(kPrimaryColor),
         shape: MaterialStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
