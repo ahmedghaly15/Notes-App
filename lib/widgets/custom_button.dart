@@ -8,6 +8,7 @@ class CustomButton extends StatelessWidget {
   final double width;
   final void Function()? onPressed;
   final TextStyle? textStyle;
+  final bool isLoading;
 
   const CustomButton({
     super.key,
@@ -21,6 +22,7 @@ class CustomButton extends StatelessWidget {
       letterSpacing: 0.5,
       color: Colors.white,
     ),
+    this.isLoading = false,
   });
 
   @override
@@ -41,10 +43,14 @@ class CustomButton extends StatelessWidget {
           ),
         ),
       ),
-      child: Text(
-        buttonText,
-        style: textStyle,
-      ),
+      child: isLoading
+          ? const CircularProgressIndicator(
+              color: Colors.black,
+            )
+          : Text(
+              buttonText,
+              style: textStyle,
+            ),
     );
   }
 }

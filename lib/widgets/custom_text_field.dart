@@ -19,6 +19,7 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         enabledBorder: buildBorder(color: Colors.white),
         focusedBorder: buildBorder(color: kPrimaryColor),
+        errorBorder: buildBorder(color: Colors.red),
         hintText: hint,
         hintStyle: const TextStyle(color: kPrimaryColor),
       ),
