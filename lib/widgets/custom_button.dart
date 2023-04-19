@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/shared/constants.dart';
+import '/shared/constants.dart';
 
 class CustomButton extends StatelessWidget {
   final String buttonText;

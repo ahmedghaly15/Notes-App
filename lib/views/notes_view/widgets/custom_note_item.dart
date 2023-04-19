@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
-import 'package:notes_app/views/edit_note_view.dart';
 
-import '../models/note_model.dart';
+import '/models/note_model.dart';
+import '/cubits/notes_cubit/notes_cubit.dart';
+import '/views/edit_note_view/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key, required this.noteModel});
@@ -14,7 +14,11 @@ class NoteItem extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const EditeNoteView()),
+          MaterialPageRoute(
+            builder: (context) => EditeNoteView(
+              note: noteModel,
+            ),
+          ),
         );
       },
       child: Card(
@@ -36,7 +40,7 @@ class NoteItem extends StatelessWidget {
                 title: Text(
                   noteModel.title!,
                   style: const TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontSize: 24,
                   ),
                 ),
@@ -45,7 +49,7 @@ class NoteItem extends StatelessWidget {
                   child: Text(
                     noteModel.subTitle!,
                     style: const TextStyle(
-                      color: Colors.black45,
+                      color: Colors.white60,
                       fontSize: 18,
                     ),
                   ),
@@ -57,7 +61,7 @@ class NoteItem extends StatelessWidget {
                   },
                   icon: const Icon(
                     FontAwesomeIcons.trash,
-                    color: Colors.black,
+                    color: Colors.blueGrey,
                     size: 24,
                   ),
                 ),
@@ -67,7 +71,7 @@ class NoteItem extends StatelessWidget {
                 child: Text(
                   "${noteModel.date!} at ${noteModel.time!}",
                   style: const TextStyle(
-                    color: Colors.black45,
+                    color: Colors.white38,
                     fontSize: 13,
                   ),
                 ),
